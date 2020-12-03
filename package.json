@@ -1,0 +1,23 @@
+{
+  "name": "@hank/advent-cli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "test": "jest"
+  },
+  "bin": {
+    "advent": "./bin/advent.js"
+  },
+  "author": "Hank",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^2.19.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.10.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0"
+  }
+}
