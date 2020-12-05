@@ -3,39 +3,19 @@ const { Command } = require('commander');
 
 const init = require('./init');
 
-
 const main = (args = process.argv, program = new Command()) => {
   const defaultNameTemplate = 'solve.js';
   const defaultTemplateFile = path.resolve(__dirname, 'templates', 'day.js');
 
-  program.on(
-    '--help', () => {
-      console.log('hej');
-    },
-  );
-
-  let action;
-
   program
-    .command('init <day>')
+    .version('0.0.1')
+    .command('init [day]', { isDefault: true })
     .description('Initalize a given day')
-    .option(
-      '-n, --name-template [template',
-      'The template filename',
-      defaultNameTemplate,
-    )
-    .option(
-      '-t, --template-file [filepath]',
-      'The path to the template file',
-      defaultTemplateFile,
-    )
-    .action((day, command) => {
-      action = init();
+    .action((day) => {
+      init(day);
     });
 
   program.parse(args);
-
-  return action;
 };
 
 module.exports = main;
