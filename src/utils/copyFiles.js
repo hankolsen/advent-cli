@@ -1,20 +1,22 @@
 const fs = require('fs');
 const path = require('path');
 
-const copyFiles = (day) => {
-  const basePath = path.join(__dirname, '../templates/');
-  const filenNames = [
-    'solve.js',
-    'test.js',
-    'utils.js',
-  ];
+const copyFiles = ({
+  dir,
+  templatesFolder = path.join(__dirname, '../templates/'),
+}) => {
+  const fileNames = fs.readdirSync(templatesFolder);
 
   console.log('Copying files');
-  filenNames.forEach((fileName) => {
-    fs.copyFileSync(path.join(basePath, fileName), `./${day}/${fileName}`);
+  fileNames.forEach((fileName) => {
+    fs.copyFileSync(
+      path.join(templatesFolder, fileName),
+      `./${dir}/${fileName}`,
+    );
+    if (fileName === 'solve.js') {
+      fs.chmodSync(`./${dir}/solve.js`, '755');
+    }
   });
-
-  fs.chmodSync(`./${day}/solve.js`, '755');
 };
 
 module.exports = copyFiles;
