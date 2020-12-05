@@ -4,10 +4,11 @@ const isPathExisting = require('./isPathExisting');
 
 const createDirectory = async (dir) => {
   if (isPathExisting(dir)) {
-    const goOn = await confirmContinue(
-      `Directory ${dir} already exists. Continue anyways?`,
-    );
-    if (!goOn) {
+    if (
+      !(await confirmContinue(
+        `Directory ${dir} already exists. Continue anyways?`,
+      ))
+    ) {
       process.exit(0);
     }
 
